@@ -32,11 +32,11 @@ try:
             if scode in codes:
                 codes[scode] += 1
 
-            if counter < 9:
-                counter += 1
-            else:
-                printStats(totalSize, codes)
-                counter = 0
+                if counter < 9:
+                    counter += 1
+                else:
+                    printStats(totalSize, codes)
+                    counter = 0
     printStats(totalSize, codes)
 
 except KeyboardInterrupt:
