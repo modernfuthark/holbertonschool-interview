@@ -13,11 +13,12 @@ def printStats():
         if codes[k] != 0:
             print("{}: {}".format(k, codes[k]))
 
-counter = 0
+counter = 0  # Loop counter
+totalSize = 0
 codes = {200: 0, 301: 0, 400: 0,
          401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+# Tester is the expected input, but with all numbers replaced
 tester = '#.#.#.# - [#-#-# #:#:#.#] "GET /projects/# HTTP/#.#" # #'
-totalSize = 0  # Global file size
 
 try:
     for L in sys.stdin:
@@ -30,6 +31,7 @@ try:
 
             if scode in codes:
                 codes[scode] += 1
+
             if counter < 9:
                 counter += 1
             else:
@@ -39,4 +41,3 @@ try:
 
 except KeyboardInterrupt:
     printStats()
-    raise
