@@ -5,8 +5,11 @@ import re
 
 
 def printStats():
+    """ Prints current logged statistics """
     print("File size: {}".format(totalSize))
-    for k in codes:
+
+    sortedCodes = sorted(codes.keys())
+    for k in sortedCodes:
         if codes[k] != 0:
             print("{}: {}".format(k, codes[k]))
 
