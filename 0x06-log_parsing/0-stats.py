@@ -12,7 +12,8 @@ gfilesize = 0  # Global file size
 
 try:
     for L in sys.stdin:
-        if re.sub('\d+', '#', L.rstrip('\n')) == tester:
+        #if re.sub('\d+', '#', L.rstrip('\n')) == tester:
+        if 1 == 1:
             # print(counter + 1)  # +1 for readability
             scode = int(re.match('(?:.*?\d+){14}.*?(\d+)',
                         L.rstrip('\n')).group(1))
