@@ -4,11 +4,11 @@ import sys
 import re
 
 
-def printStats():
+def printStats(size, tracker):
     """ Prints current logged statistics """
-    print("File size: {}".format(totalSize))
+    print("File size: {}".format(size))
 
-    sortedCodes = sorted(codes.keys())
+    sortedCodes = sorted(tracker.keys())
     for k in sortedCodes:
         if codes[k] != 0:
             print("{}: {}".format(k, codes[k]))
@@ -35,9 +35,9 @@ try:
             if counter < 9:
                 counter += 1
             else:
-                printStats()
+                printStats(totalSize, codes)
                 counter = 0
-    printStats()
+    printStats(totalSize, codes)
 
 except KeyboardInterrupt:
-    printStats()
+    printStats(totalSize, codes)
