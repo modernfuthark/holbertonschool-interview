@@ -39,3 +39,4 @@ try:
 
 except KeyboardInterrupt:
     printStats()
+    raise
