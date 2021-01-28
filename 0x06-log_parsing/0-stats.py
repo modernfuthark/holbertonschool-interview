@@ -3,6 +3,7 @@
 import sys
 import re
 
+
 def printStats():
     print("File size: {}".format(totalSize))
     for k in codes:
