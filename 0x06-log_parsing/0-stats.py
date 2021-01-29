@@ -20,8 +20,7 @@ codes = {'200': 0, '301': 0, '400': 0,
 try:
     for L in sys.stdin:
         if len(re.findall('\s', L.rstrip('\n'))) == 8:
-            scode = re.findall('\w+',
-                             L.rstrip('\n'))[-2]
+            scode = re.findall('\w+', L.rstrip('\n'))[-2]
             fsize = re.findall('\d+$', L.rstrip('\n'))[0]
             totalSize += int(fsize)
 
