@@ -15,8 +15,8 @@ def printStats(size, tracker):
 
 counter = 0  # Loop counter
 totalSize = 0
-codes = {200: 0, 301: 0, 400: 0,
-         401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+codes = {'200': 0, '301': 0, '400': 0,
+         '401': 0, '403': 0, '404': 0, '405': 0, '500': 0}
 # Tester is the expected input, but with all numbers replaced
 tester = '#.#.#.# - [#-#-# #:#:#.#] "GET /projects/# HTTP/#.#" # #'
 
@@ -24,10 +24,10 @@ try:
     for L in sys.stdin:
         if re.sub('\d+', '#', L.rstrip('\n')) == tester:
             # print(counter + 1)  # +1 for readability
-            scode = int(re.match('(?:.*?\d+){14}.*?(\d+)',
-                        L.rstrip('\n')).group(1))
-            fsize = int(re.findall('\d+$', L.rstrip('\n'))[0])
-            totalSize += fsize
+            scode = re.match('(?:.*?\d+){14}.*?(\d+)',
+                        L.rstrip('\n')).group(1)
+            fsize = re.findall('\d+$', L.rstrip('\n'))[0]
+            totalSize += int(fsize)
 
             if scode in codes:
                 codes[scode] += 1
