@@ -25,7 +25,7 @@ try:
         if re.sub('\d+', '#', L.rstrip('\n')) == tester:
             # print(counter + 1)  # +1 for readability
             scode = re.match('(?:.*?\d+){14}.*?(\d+)',
-                        L.rstrip('\n')).group(1)
+                             L.rstrip('\n')).group(1)
             fsize = re.findall('\d+$', L.rstrip('\n'))[0]
             totalSize += int(fsize)
 
