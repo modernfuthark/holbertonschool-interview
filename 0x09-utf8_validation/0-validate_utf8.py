@@ -3,8 +3,8 @@
 
 
 def validUTF8(data):
+    sigBits = [byte & 0xFF for byte in data]
     try:
-        sigBits = [byte & 0xFF for byte in data]
         byteData = bytes(eightBits)
         byteData.decode()
     except:
