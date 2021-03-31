@@ -1,9 +1,6 @@
 #include "search.h"
 #include <math.h>
 
-skiplist_t *getValue(skiplist_t *list, int value);
-skiplist_t *getLastNode(skiplist_t *list);
-
 /**
  * linear_skip - Search a skip list for a value
  * @list: Head of list to search through
@@ -22,8 +19,10 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 
 	if (temp->express && temp->express->n >= value)
 	{
-		printf("Value checked at index [%lu] = [%d]\n", temp->express->index, temp->express->n);
-		printf("Value found between [%lu] and [%lu]\n", temp->index, temp->express->index);
+		printf("Value checked at index [%lu] = [%d]\n",
+		temp->express->index, temp->express->n);
+		printf("Value found between indexes [%lu] and [%lu]\n",
+		temp->index, temp->express->index);
 		return (getValue(temp, value));
 	}
 	/* Express skipping */
@@ -34,25 +33,27 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		printf("Value checked at index [%lu] = [%d]\n", temp->index, temp->n);
 		if (!temp->express)
 		{
-			printf("Value found between [%lu] and [%lu]\n", temp->index, last->index);
+			printf("Value found between indexes [%lu] and [%lu]\n", temp->index, last->index);
 			break;
 		}
 		if (temp->express->n >= value)
 		{
-			printf("Value checked at index [%lu] = [%d]\n", temp->express->index, temp->express->n);
-			printf("Value found between [%lu] and [%lu]\n", temp->index, temp->express->index);
+			printf("Value checked at index [%lu] = [%d]\n",
+			temp->express->index, temp->express->n);
+			printf("Value found between indexes [%lu] and [%lu]\n",
+			temp->index, temp->express->index);
 			break;
 		}
 	}
-
-	//printf("debug node info before getValue: index[%lu] value[%d]\n", temp->index, temp->n);
-	//temp = getValue(temp, value);
-	//printf("debug node info after getValue: index[%lu] value[%d]\n", temp->index, temp->n);
-	//if (temp)
-	//	return (temp);
 	return (getValue(temp, value));
 }
 
+/**
+ * getValue - Search for value in list
+ * @list: List to search
+ * @value: Value to find
+ * Return: Pointer to node with value
+ */
 skiplist_t *getValue(skiplist_t *list, int value)
 {
 	if (list)
@@ -62,18 +63,20 @@ skiplist_t *getValue(skiplist_t *list, int value)
 			printf("Value checked at index [%lu] = [%d]\n", list->index, list->n);
 			if (list->n == value)
 			{
-				//printf("Found %d at index: %lu\n", value, list->index);
 				return (list);
 			}
 			else
-				//getValue(list->next, value);
 				list = list->next;
 		}
 	}
-	//printf("Found %d at index: (nil)", value);
 	return (list);
 }
 
+/**
+ * getLastNode - Gets the last node in list
+ * @list: List to pass through
+ * Return: Last node in list
+ */
 skiplist_t *getLastNode(skiplist_t *list)
 {
 	if (!list->next)
