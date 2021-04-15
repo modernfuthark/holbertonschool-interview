@@ -9,7 +9,7 @@ def rain(walls):
     size = len(walls)
     totalWater = 0
 
-    if size <= 0:
+    if size <= 1:
         return 0
 
     lastWall = 0
