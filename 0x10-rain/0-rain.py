@@ -6,13 +6,13 @@
 
 def rain(walls):
     """ rain function """
-    size = len(walls)
-    totalWater = 0
-
-    if size <= 1:
+    if type(walls) is not list or len(walls) <= 1:
         return 0
 
+    size = len(walls)
+    totalWater = 0
     lastWall = 0
+
     for i in range(size):
         # Bigger wall found, set lastWall to it
         if walls[i] >= walls[lastWall]:
