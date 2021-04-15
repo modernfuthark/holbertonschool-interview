@@ -23,8 +23,9 @@ def rain(walls):
 
     if lastWall < size - 1:
         # Backtrack through list, since last wall wasn't at the end of the list
-        # Remove last added water - 1 as compensation
-        totalWater -= totalWater - 1
+        # Remove water - 1 as compensation, unless at a supposed wall
+        if walls[i] < walls[lastWall]:
+            totalWater -= totalWater - 1
         lastWallcp = lastWall
         lastWall = size - 1
         # Iterate backwards from end of list to lastWall
