@@ -12,20 +12,23 @@ def rain(walls):
     size = len(walls)
     totalWater = 0
     lastWall = 0
+    currentPool = 0
 
     for i in range(size):
         # Bigger wall found, set lastWall to it
         if walls[i] >= walls[lastWall]:
             lastWall = i
+            currentPool = 0
         else:
             # Add "size" of pit between lastWall and current index
             totalWater += walls[lastWall] - walls[i]
+            currentPool += walls[lastWall] - walls[i]
 
     if lastWall < size - 1:
         # Backtrack through list, since last wall wasn't at the end of the list
-        # Remove water - 1 as compensation, unless at a supposed wall
+        # Remove last pool for recalculation
         if walls[i] < walls[lastWall]:
-            totalWater -= totalWater - 1
+            totalWater -= currentPool
         lastWallcp = lastWall
         lastWall = size - 1
         # Iterate backwards from end of list to lastWall
