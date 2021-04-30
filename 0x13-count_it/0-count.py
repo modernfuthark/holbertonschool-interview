@@ -24,14 +24,14 @@ def count_words(subreddit, word_list, total={}, aft=None):
                        headers={"User-Agent": "0x13-count_it_TimSninsky"})
 
     if req.status_code != 200:
-        #print(req.status_code)
+        # print(req.status_code)
         return
 
     data = req.json()['data']
 
     for post in data['children']:
         title = post['data']['title']
-        for k,v in total.items():
+        for k, v in total.items():
             # Create pattern with key and a negative lookahead
             pattern = k + "(?!\w+)"
             # Get all instances of pattern in title, and add to dictionary
