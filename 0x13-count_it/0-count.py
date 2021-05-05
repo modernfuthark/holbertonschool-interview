@@ -14,7 +14,7 @@ def count_words(subreddit, word_list, total={}, aft=None):
     # create dictionary of words with a count of 0
     if len(total) == 0:
         for word in word_list:
-            total[word.lower()] = 0
+            total[word] = 0
 
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     if aft:
@@ -44,8 +44,19 @@ def count_words(subreddit, word_list, total={}, aft=None):
         return count_words(subreddit, word_list, total, aft)
     else:
         # Sort dictionary by the key's values
-        sorted_totals = reversed(sorted(total.items(), key=lambda kv: kv[1]))
+        sorted_totals = resolveDuplates(total)
         for item in sorted_totals:
             if item[1] > 0:
                 print("{}: {}".format(item[0], item[1]))
     return
+
+def resolveDuplates(list):
+    newDict = {}
+
+    for k,v in list.items():
+        low = k.lower()
+        if low not in newDict:
+            newDict[low] = list[k]
+        else:
+            newDict[low] += list[k]
+    return reversed(sorted(newDict.items(), key=lambda kv: kv[1]))
