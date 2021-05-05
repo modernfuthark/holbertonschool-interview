@@ -14,7 +14,7 @@ def count_words(subreddit, word_list, total={}, aft=None):
     # create dictionary of words with a count of 0
     if len(total) == 0:
         for word in word_list:
-            total[word] = 0
+            total[word.lower()] = 0
 
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     if aft:
@@ -33,7 +33,7 @@ def count_words(subreddit, word_list, total={}, aft=None):
         title = post['data']['title']
         for k, v in total.items():
             # Create pattern with key and a negative lookahead
-            pattern = k + "(?!\w+)"
+            pattern = k + "(?!(\w+)|(\S+))"
             # Get all instances of pattern in title, and add to dictionary
             result = re.findall(pattern, title, flags=re.IGNORECASE)
             total[k] += len(result)
