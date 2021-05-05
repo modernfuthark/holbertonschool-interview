@@ -3,8 +3,8 @@
 0-count
 """
 
-import requests
 import re
+import requests
 
 
 def count_words(subreddit, word_list, total={}, aft=None):
@@ -24,7 +24,6 @@ def count_words(subreddit, word_list, total={}, aft=None):
                        headers={"User-Agent": "0x13-count_it_TimSninsky"})
 
     if req.status_code != 200:
-        # print(req.status_code)
         return
 
     data = req.json()['data']
@@ -44,16 +43,18 @@ def count_words(subreddit, word_list, total={}, aft=None):
         return count_words(subreddit, word_list, total, aft)
     else:
         # Sort dictionary by the key's values
-        sorted_totals = resolveDuplates(total)
+        sorted_totals = resolveDupes(total)
         for item in sorted_totals:
             if item[1] > 0:
                 print("{}: {}".format(item[0], item[1]))
     return
 
-def resolveDuplates(list):
+
+def resolveDupes(list):
+    """ turns dictionary into a sorted dictionary with no duplicates """
     newDict = {}
 
-    for k,v in list.items():
+    for k, v in list.items():
         low = k.lower()
         if low not in newDict:
             newDict[low] = list[k]
