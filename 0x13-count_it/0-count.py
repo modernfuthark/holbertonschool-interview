@@ -24,7 +24,6 @@ def count_words(subreddit, word_list, total={}, aft=None):
                        headers={"User-Agent": "0x13-count_it_TimSninsky"})
 
     if req.status_code != 200:
-        print()
         return
 
     data = req.json()['data']
