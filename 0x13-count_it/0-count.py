@@ -42,22 +42,24 @@ def count_words(subreddit, word_list, total={}, aft=None):
     if aft is not None:
         return count_words(subreddit, word_list, total, aft)
     else:
-        # Sort dictionary by the key's values
-        sorted_totals = resolveDupes(total)
-        for item in sorted_totals:
-            if item[1] > 0:
-                print("{}: {}".format(item[0], item[1]))
+        # Combine duplicates into a lowercase key
+        sorted_totals = {}
+        for k, v in total.items():
+            if v > 0:
+                low = k.lower()
+                if low not in sorted_totals:
+                    sorted_totals[low] = v
+                else:
+                    sorted_totals[low] += v
+        if len(sorted_totals) == 0:
+            print()
+            return sorted_totals
+
+        # Sort dictionary by value
+        sorted_totals = sorted(sorted_totals.items(),
+                               key=lambda kv: kv[1], reverse=True)
+
+        # Print list
+        for k, v in sorted_totals:
+                print("{}: {}".format(k, v))
     return
-
-
-def resolveDupes(list):
-    """ turns dictionary into a sorted dictionary with no duplicates """
-    newDict = {}
-
-    for k, v in list.items():
-        low = k.lower()
-        if low not in newDict:
-            newDict[low] = list[k]
-        else:
-            newDict[low] += list[k]
-    return reversed(sorted(newDict.items(), key=lambda kv: kv[1]))
