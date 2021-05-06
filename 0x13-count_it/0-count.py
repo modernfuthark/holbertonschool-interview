@@ -49,7 +49,6 @@ def count_words(subreddit, word_list, total={}, aft=None):
                 else:
                     sortedTotals[low] += v
         if len(sortedTotals) == 0:
-            print("")
             return None
 
         # Sort dictionary by value
