@@ -32,10 +32,13 @@ def count_words(subreddit, word_list, total={}, aft=None):
         title = post['data']['title']
         for k, v in total.items():
             # Create pattern with key and a negative lookahead
-            pattern = k + "(?!(\w+)|(\S+))"
+            # pattern = k + "(?!(\w+)|(\S+))"
             # Get all instances of pattern in title, and add to dictionary
-            result = re.findall(pattern, title, flags=re.IGNORECASE)
-            total[k] += len(result)
+            # result = re.findall(pattern, title, flags=re.IGNORECASE)
+
+            lowerTitle = title.lower()
+            splitTitle = lowerTitle.split()
+            total[k] += splitTitle.count(k.lower())
 
     # Check if there's an after, and recurse if so
     aft = data['after']
@@ -43,23 +46,23 @@ def count_words(subreddit, word_list, total={}, aft=None):
         return count_words(subreddit, word_list, total, aft)
     else:
         # Combine duplicates into a lowercase key
-        sorted_totals = {}
+        sortedTotals = {}
         for k, v in total.items():
             if v > 0:
                 low = k.lower()
-                if low not in sorted_totals:
-                    sorted_totals[low] = v
+                if low not in sortedTotals:
+                    sortedTotals[low] = v
                 else:
-                    sorted_totals[low] += v
-        if len(sorted_totals) == 0:
+                    sortedTotals[low] += v
+        if len(sortedTotals) == 0:
             print()
             return None
 
         # Sort dictionary by value
-        sorted_totals = sorted(sorted_totals.items(),
+        sortedTotals = sorted(sortedTotals.items(),
                                key=lambda kv: kv[1], reverse=True)
 
         # Print list
-        for k, v in sorted_totals:
+        for k, v in sortedTotals:
                 print("{}: {}".format(k, v))
-        return sorted_totals
+        return sortedTotals
