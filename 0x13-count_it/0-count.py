@@ -3,7 +3,6 @@
 0-count
 """
 
-import re
 import requests
 
 
@@ -31,13 +30,8 @@ def count_words(subreddit, word_list, total={}, aft=None):
     for post in data['children']:
         title = post['data']['title']
         for k, v in total.items():
-            # Create pattern with key and a negative lookahead
-            # pattern = k + "(?!(\w+)|(\S+))"
-            # Get all instances of pattern in title, and add to dictionary
-            # result = re.findall(pattern, title, flags=re.IGNORECASE)
-
-            lowerTitle = title.lower()
-            splitTitle = lowerTitle.split()
+            # Split the lowercase title and count finds of the key
+            splitTitle = title.lower().split()
             total[k] += splitTitle.count(k.lower())
 
     # Check if there's an after, and recurse if so
@@ -55,12 +49,12 @@ def count_words(subreddit, word_list, total={}, aft=None):
                 else:
                     sortedTotals[low] += v
         if len(sortedTotals) == 0:
-            print()
+            print("")
             return None
 
         # Sort dictionary by value
         sortedTotals = sorted(sortedTotals.items(),
-                               key=lambda kv: kv[1], reverse=True)
+                              key=lambda kv: kv[1], reverse=True)
 
         # Print list
         for k, v in sortedTotals:
