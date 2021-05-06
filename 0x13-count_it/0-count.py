@@ -23,6 +23,7 @@ def count_words(subreddit, word_list, total={}, aft=None):
                        headers={"User-Agent": "0x13-count_it_TimSninsky"})
 
     if req.status_code != 200:
+        print("")
         return None
 
     data = req.json()['data']
@@ -49,6 +50,7 @@ def count_words(subreddit, word_list, total={}, aft=None):
                 else:
                     sortedTotals[low] += v
         if len(sortedTotals) == 0:
+            print("")
             return None
 
         # Sort dictionary by value
