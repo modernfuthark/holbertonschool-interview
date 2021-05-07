@@ -35,10 +35,7 @@ def count_words(subreddit, word_list, total={}, aft=""):
             total[k] += splitTitle.count(k.lower())
 
     # Check if there's an after, and recurse if so
-    aft = data['after']
-    if aft is not None:
-        count_words(subreddit, word_list, total, aft)
-    else:
+    if data['after'] is None:
         # Combine duplicates into a lowercase key
         sortedTotals = {}
         for k, v in total.items():
@@ -51,9 +48,10 @@ def count_words(subreddit, word_list, total={}, aft=""):
 
         # Sort dictionary by value
         sortedTotals = sorted(sortedTotals.items(),
-                              key=lambda kv: (kv[1], kv[0]), reverse=True)
+                              key=lambda kv: (-kv[1], kv[0]))
 
         # Print list
         for k, v in sortedTotals:
                 print("{}: {}".format(k, v))
         return
+    count_words(subreddit, word_list, total, data['after'])
