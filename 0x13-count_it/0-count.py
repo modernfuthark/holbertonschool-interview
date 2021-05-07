@@ -23,7 +23,7 @@ def count_words(subreddit, word_list, total={}, aft=""):
                        headers={"User-Agent": "PlaceholderAgent"})
 
     if req.status_code != 200:
-        return None
+        return
 
     data = req.json()['data']
 
@@ -51,7 +51,7 @@ def count_words(subreddit, word_list, total={}, aft=""):
 
         # Sort dictionary by value
         sortedTotals = sorted(sortedTotals.items(),
-                              key=lambda kv: kv[1], reverse=True)
+                              key=lambda kv: (kv[1], kv[0]), reverse=True)
 
         # Print list
         for k, v in sortedTotals:
