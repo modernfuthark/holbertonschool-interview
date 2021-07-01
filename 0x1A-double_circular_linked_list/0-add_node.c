@@ -30,6 +30,7 @@ List *add_node_begin(List **list, char *str)
 	{
 		newNode->next = newNode;
 		newNode->prev = newNode;
+		*list = newNode;
 	}
 	else
 	{
