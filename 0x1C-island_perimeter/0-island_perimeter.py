@@ -5,6 +5,7 @@ Island perimeter project
 
 
 def island_perimeter(grid):
+    """ Island perimeter function """
     perim = 0
 
     for i in range(0, len(grid)):
@@ -21,14 +22,3 @@ def island_perimeter(grid):
                 if grid[i + 1][j] == 0:
                     perim += 1
     return perim
-
-
-if __name__ == "__main__":
-    grid = [
-        [0, 0, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0]
-    ]
-    print(island_perimeter(grid))
