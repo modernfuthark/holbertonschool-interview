@@ -21,7 +21,7 @@ def island_perimeter(grid):
                     if grid[i][j + 1] == 0:
                         perim += 1
                 else:
-                    # Assume out of range areas are water
+                    # Treat out of range areas as water
                     perim += 1
 
                 if grid[i - 1][j] == 0:
@@ -31,6 +31,6 @@ def island_perimeter(grid):
                     if grid[i + 1][j] == 0:
                         perim += 1
                 else:
-                    # Assume out of range areas are water
+                    # Treat out of range areas as water
                     perim += 1
     return perim
