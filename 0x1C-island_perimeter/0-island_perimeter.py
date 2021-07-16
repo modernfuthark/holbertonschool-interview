@@ -12,25 +12,25 @@ def island_perimeter(grid):
         for j in range(0, len(grid[0])):
             # print(f"checking [{i}][{j}]")
             if grid[i][j] == 1:
-                # land found
+                # Land found
 
-                if grid[i][j - 1] == 0:
-                    perim += 1
+                # Left
+                if j >= 0:
+                    if grid[i][j - 1] == 0:
+                        perim += 1
 
-                if j + 1 > len(grid[0]):
+                # Right
+                if j + 1 <= len(grid[0]):
                     if grid[i][j + 1] == 0:
                         perim += 1
-                else:
-                    # Treat out of range areas as water
-                    perim += 1
 
-                if grid[i - 1][j] == 0:
-                    perim += 1
+                # Up
+                if i < len(grid):
+                    if grid[i - 1][j] == 0:
+                        perim += 1
 
-                if i + 1 > len(grid):
+                # Down
+                if i + 1 <= len(grid):
                     if grid[i + 1][j] == 0:
                         perim += 1
-                else:
-                    # Treat out of range areas as water
-                    perim += 1
     return perim
