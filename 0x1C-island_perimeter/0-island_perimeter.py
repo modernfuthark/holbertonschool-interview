@@ -15,9 +15,11 @@ def island_perimeter(grid):
                 # Land found
 
                 # Left
-                if j >= 0:
+                if j > 0:
                     if grid[i][j - 1] == 0:
                         perim += 1
+                else:
+                    perim += 1
 
                 # Right
                 if j + 1 < len(grid[i]):
@@ -27,9 +29,11 @@ def island_perimeter(grid):
                     perim += 1
 
                 # Up
-                if i < len(grid):
+                if i < len(grid) - 1:
                     if grid[i - 1][j] == 0:
                         perim += 1
+                else:
+                    perim += 1
 
                 # Down
                 if i + 1 < len(grid):
