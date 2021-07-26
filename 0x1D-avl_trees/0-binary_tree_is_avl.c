@@ -1,5 +1,5 @@
-#include "binary_trees.h";
-#include <limits.h>;
+#include "binary_trees.h"
+#include <limits.h>
 
 /**
  * binary_tree_is_avl - Checks to see if a binary tree is an AVL tree
@@ -14,7 +14,7 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 	if (!tree)
 		return (0);
 
-	if (recursive_bst_check(tree, INT_MIN, INT_MAX))
+	if (recur_bst_check(tree, INT_MIN, INT_MAX))
 	{
 		bal = tree_balance(tree);
 		if (bal == 0)
@@ -49,6 +49,9 @@ int recur_bst_check(const binary_tree_t *tree, int min, int max)
 int tree_balance(const binary_tree_t *tree)
 {
 	int balanceFactor;
+
+	if (!tree)
+		return (0);
 
 	balanceFactor = get_balance(tree);
 
@@ -85,10 +88,14 @@ size_t get_height(const binary_tree_t *tree)
 {
 	size_t R, L;
 
+	if (!tree)
+		return (0);
+
 	L = get_height(tree->left);
 	R = get_height(tree->right);
 
 	if (L > R)
 		return (L + 1);
-	return (R + 1);
+	else
+		return (R + 1);
 }
