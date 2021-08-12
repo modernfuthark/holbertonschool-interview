@@ -26,11 +26,17 @@ int recursive_checker(const char *s, const char *p)
 	if (*(s + 1) == '\0' && *(p + 1) == '\0' && (*p == *s || *p == '.'))
 		return (1);
 
+	if (*(p + 1) != '\0' && *(p + 1) == *s && *p == '*')
+		return (recursive_checker(s, p + 1));
+
 	if (*(p + 1) == '*' && (*p != *s && *p != '.'))
 		return (recursive_checker(s, p + 2));
 
 	if ((*(s + 1) == '\0' && *p != '*') || *p == '\0')
 		return (0);
+
+	if (*p == '.' && *(p + 1) == '*' && *(p + 2) == *s && *(p + 3) != '.')
+		return (recursive_checker(s, p + 1));
 
 	if (*s == *p || *p == '.')
 		return (recursive_checker(s + 1, p + 1));
