@@ -40,7 +40,6 @@ def isWinner(x, nums):
     ben = 0
     maria = 0
     for round in range(x):
-        print(f"New Round {round +1 }")
         new = [n for n in range(1, nums[round] + 1)]
         turn = 0
         while containsPrime(new):
