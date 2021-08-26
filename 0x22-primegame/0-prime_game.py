@@ -1,6 +1,11 @@
 #!/usr/bin/python3
+"""
+Plays the Prime Game
+"""
+
 
 def primeCheck(n):
+    """ Checks if n is a prime number """
     if n <= 3:
         return n > 1
     if n % 2 == 0 or n % 3 == 0:
@@ -12,12 +17,16 @@ def primeCheck(n):
         i += 6
     return True
 
+
 def remover(L, n):
+    """ Removes multiples of n from list L """
     for i in L:
         if i % n == 0:
             L.remove(i)
 
+
 def isWinner(x, nums):
+    """ Prime Game """
     if x <= 0 or nums is None or x != len(nums):
         return None
 
