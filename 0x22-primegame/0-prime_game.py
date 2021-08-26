@@ -17,10 +17,13 @@ def primeCheck(n):
         i += 6
     return True
 
+
 def containsPrime(L):
+    """ Checks if L contains any prime numbers """
     for i in L:
         if primeCheck(i):
             return True
+
 
 def remover(L, n):
     """ Removes multiples of n from list L """
@@ -52,6 +55,5 @@ def isWinner(x, nums):
             ben += 1
         else:
             maria += 1
-
 
     return 'Maria' if maria > ben else 'Ben'
