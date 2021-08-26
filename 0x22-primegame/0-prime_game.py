@@ -17,6 +17,10 @@ def primeCheck(n):
         i += 6
     return True
 
+def containsPrime(L):
+    for i in L:
+        if primeCheck(i):
+            return True
 
 def remover(L, n):
     """ Removes multiples of n from list L """
@@ -33,17 +37,21 @@ def isWinner(x, nums):
     ben = 0
     maria = 0
     for round in range(x):
+        print(f"New Round {round +1 }")
         new = [n for n in range(1, nums[round] + 1)]
         turn = 0
-        while len(new) > 1:
+        while containsPrime(new):
+            turn += 1
             for i in new:
                 if primeCheck(i):
                     new.remove(i)
                     remover(new, i)
-                    if turn % 2 == 0:
-                        ben += 1
-                    else:
-                        maria += 1
-            turn += 1
+                    break
+
+        if turn % 2 == 0:
+            ben += 1
+        else:
+            maria += 1
+
 
     return 'Maria' if maria > ben else 'Ben'
