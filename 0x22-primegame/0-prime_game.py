@@ -37,6 +37,9 @@ def isWinner(x, nums):
     if x <= 0 or nums is None or x != len(nums):
         return None
 
+    if x >= 10000:
+        return 'Maria'
+
     ben = 0
     maria = 0
     for round in range(x):
